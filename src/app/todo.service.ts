@@ -20,4 +20,12 @@ export class TodoService {
   addTarefa(titulo: string): Observable<Tarefa> {
     return this.http.post<Tarefa>(this.apiUrl, { titulo, concluida: false });
   }
+
+  concluirTarefa(id: number): Observable<Tarefa> {
+    return this.http.put<Tarefa>(`${this.apiUrl}/${id}`, {});
+  }
+
+  deletarTarefa(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
 }

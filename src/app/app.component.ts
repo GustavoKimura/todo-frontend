@@ -33,4 +33,18 @@ export class AppComponent implements OnInit {
       });
     }
   }
+
+  concluir(id: number | undefined) {
+    if (!id) return;
+    this.todoService.concluirTarefa(id).subscribe(() => {
+      this.carregar();
+    });
+  }
+
+  deletar(id: number | undefined) {
+    if (!id) return;
+    this.todoService.deletarTarefa(id).subscribe(() => {
+      this.carregar();
+    });
+  }
 }
