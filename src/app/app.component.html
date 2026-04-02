@@ -1,0 +1,33 @@
+<main style="max-width: 500px; margin: 50px auto; font-family: sans-serif">
+  <h1>Minhas Tarefas</h1>
+
+  <div style="display: flex; gap: 10px; margin-bottom: 20px">
+    <input
+      [ngModel]="novoTitulo()"
+      (ngModelChange)="novoTitulo.set($event)"
+      placeholder="O que precisa ser feito?"
+      style="flex: 1; padding: 8px"
+    />
+    <button (click)="adicionar()" style="padding: 8px 16px">Adicionar</button>
+  </div>
+
+  <ul style="list-style: none; padding: 0">
+    @for (t of tarefas(); track t.id) {
+      <li
+        style="
+          padding: 10px;
+          border-bottom: 1px solid #eee;
+          display: flex;
+          justify-content: space-between;
+        "
+      >
+        <span>{{ t.titulo }}</span>
+        <small [style.color]="t.concluida ? 'green' : 'orange'">
+          {{ t.concluida ? 'Concluída' : 'Pendente' }}
+        </small>
+      </li>
+    } @empty {
+      <li>Nenhuma tarefa encontrada.</li>
+    }
+  </ul>
+</main>
